@@ -39,7 +39,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('userChangePassword', [UserController::class, 'user_change_password'])->name('userChangePassword');
     Route::post('userChangePassword', [UserController::class, 'user_change_password_action'])->name('userChangePasswordAction');
     Route::get('userProfile', [UserController::class, 'user_profile'])->name('userProfile');
-    Route::get('userEditProfile', [UserController::class, 'user_profile_action'])->name('userProfileAction');
+    Route::post('userEditProfile', [UserController::class, 'user_profile_action'])->name('userProfileAction');
     Route::get('userChangeProfile', [UserController::class, 'user_change_profile'])->name('userProfileAction');
     // Route::get('userProfileImage', [UserController::class, 'user_profile_image'])->name('userProfileImage');
     Route::post('userProfileImage', [UserController::class, 'user_profile_image_action'])->name('userProfileImageAction');

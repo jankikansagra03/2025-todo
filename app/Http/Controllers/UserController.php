@@ -157,7 +157,7 @@ class UserController extends Controller
         $userdata = Registrations::where('email', $user)->first();
         $rules = [
             'old_password' => 'required',
-            'new_password' => 'required|min:6',
+            'new_password' => 'required|min:8|max:25|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,25}$/',
             'confirm_password' => 'required|same:new_password'
         ];
         $messages = [
@@ -194,27 +194,27 @@ class UserController extends Controller
         $user = session()->get('user');
         $userdata = Registrations::where('email', $user)->first();
         $rules = [
-            'name' => 'required',
-            'email' => 'required|email',
+            'fname' => 'required',
+            'gender' => 'required',
             'mobile' => 'required|numeric',
-            'address' => 'required'
+            'edu' => 'required'
         ];
         $messages = [
-            'name.required' => 'Name is required',
-            'email.required' => 'Email is required',
-            'email.email' => 'Email must be a valid email address',
+            'fname.required' => 'Name is required',
+            'gender.required' => 'Gender is required',
             'mobile.required' => 'Mobile is required',
             'mobile.numeric' => 'Mobile must be a number',
-            'address.required' => 'Address is required'
+            'edu.required' => 'Education is required'
         ];
         $validated = $request->validate($rules, $messages);
         if (!$validated) {
             return redirect()->route('userProfile')->withErrors($validated)->withInput();
         }
-        $userdata->name = $request->name;
-        $userdata->email = $request->email;
+        $userdata->fname = $request->fname;
+        $userdata->gender = $request->gender;
         $userdata->mobile = $request->mobile;
-        $userdata->address = $request->address;
+        $edu = $request->input('edu');
+        $userdata->edu = implode(',', $edu);
         if ($userdata->save()) {
             session()->flash('success', 'Profile Updated Successfully');
         } else {

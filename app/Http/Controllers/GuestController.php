@@ -102,12 +102,12 @@ class GuestController extends Controller
             $register->file = $profile_pic;
             $register->token = uniqid() . time();
             $request->profile_picture->move('images/profile_pictures/', $profile_pic);
-            $data = array('name' => $request->fname, 'email' => $request->email, 'gender' => $request->gender);
-            // Mail::Send(['text' => 'create_account_email'], ["data1" => $data], function ($message) use ($data) {
-            //     $message->to($data['email'], $data['name']);
-            //     $message->from("kansagrajanki@gmail.com", "Janki Kansagra");
-            // });
-            Mail::to($data['email'])->send(new AccountCreatedMail($data));
+            $data = array('name' => $request->fname, 'email' => $request->email, 'gender' => $request->gender, 'token' => $register->token);
+            Mail::Send(['text' => 'create_account_email'], ["data1" => $data], function ($message) use ($data) {
+                $message->to($data['email'], $data['name']);
+                $message->from("kansagrajanki@gmail.com", "Janki Kansagra");
+            });
+
             if ($register->save()) {
                 session()->flash('success', 'Registration Successful');
                 return redirect()->route('signin');
