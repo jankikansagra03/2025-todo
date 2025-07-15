@@ -286,13 +286,26 @@
                     </div>
                 @endif
                 @if (session('error'))
-                    <div class="alert alert-success alert-dismissible fade show bg-white text-danger" role="alert"
+                    <div class="alert alert-error alert-dismissible fade show bg-white text-danger" role="alert"
                         style="border:4px solid">
                         <strong>Error!!
                         </strong>{{ session('error') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                             aria-label="Close"></button>
                     </div>
+                @endif
+                @if ($errors->any())
+
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-error alert-dismissible fade show bg-white text-danger" role="alert"
+                            style="border:4px solid">
+                            <strong>Error!!
+                            </strong>{{ $error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endforeach
+
                 @endif
 
             </div>
