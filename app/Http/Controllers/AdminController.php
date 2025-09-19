@@ -50,5 +50,6 @@ class AdminController extends Controller
             $task->task_due_date = $request->task_due_date;
             $task->save();
         }
+    }
 
 }

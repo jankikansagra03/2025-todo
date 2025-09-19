@@ -8,4 +8,6 @@ class Registrations extends Model
 {
     //
     protected $table = 'registration';
+
+    // set timestamps to false
 }
