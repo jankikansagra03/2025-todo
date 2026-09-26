@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [GuestController::class, 'home'])->name('index');
-    Route::get('index', [GuestController::class, 'home'])->name('index');
+    Route::get('index', [GuestController::class, 'home']);
     Route::get('login', [GuestController::class, 'login'])->name('signin');
     Route::get('contact', [GuestController::class, 'contact'])->name('contactus');
 });
