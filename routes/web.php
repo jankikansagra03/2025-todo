@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [GuestController::class, 'home'])->name('index');
-    Route::get('index', [GuestController::class, 'home'])->name('index');
+    Route::get('index', [GuestController::class, 'home']);
     Route::get('login', [GuestController::class, 'login'])->name('signin');
     Route::get('contact', [GuestController::class, 'contact'])->name('contactus');
 });
@@ -45,7 +45,7 @@ Route::middleware(['user'])->group(function () {
     Route::post('userChangePassword', [UserController::class, 'user_change_password_action'])->name('userChangePasswordAction');
     Route::get('userProfile', [UserController::class, 'user_profile'])->name('userProfile');
     Route::post('userEditProfile', [UserController::class, 'user_profile_action'])->name('userProfileAction');
-    Route::get('userChangeProfile', [UserController::class, 'user_change_profile'])->name('userProfileAction');
+    Route::get('userChangeProfile', [UserController::class, 'user_change_profile'])->name('userChangeProfile');
     // Route::get('userProfileImage', [UserController::class, 'user_profile_image'])->name('userProfileImage');
     Route::post('userProfileImage', [UserController::class, 'user_profile_image_action'])->name('userProfileImageAction');
 });
@@ -70,7 +70,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('adminChangePassword', [AdminController::class, 'admin_change_password_action'])->name('adminChangePasswordAction');
     Route::get('adminProfile', [AdminController::class, 'admin_profile'])->name('adminProfile');
     Route::post('adminEditProfile', [AdminController::class, 'admin_profile_action'])->name('adminProfileAction');
-    Route::get('adminChangeProfile', [AdminController::class, 'admin_change_profile'])->name('adminProfileAction');
+    Route::get('adminChangeProfile', [AdminController::class, 'admin_change_profile'])->name('adminChangeProfile');
     Route::get('adminProfileImage', [AdminController::class, 'admin_profile_image'])->name('adminProfileImage');
     Route::post('adminProfileImage', [AdminController::class, 'admin_profile_image_action'])->name('adminProfileImageAction');
 });
